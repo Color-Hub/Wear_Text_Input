@@ -1,13 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'wear_text_input_platform_interface.dart';
 
+/// An implementation of [WearTextInputPlatform] that uses method channels.
 class MethodChannelWearTextInput extends WearTextInputPlatform {
-  final methodChannel = const MethodChannel('SELECT_INPUT_TYPE');
+  /// The method channel used to interact with the native platform.
+  @visibleForTesting
+  final methodChannel = const MethodChannel('wear_text_input');
 
   @override
-  Future<String?> getUserInput() async {
-    final String? userInput = await methodChannel.invokeMethod('selectInputType');
-    return userInput;
+  Future<String?> getPlatformVersion() async {
+    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    return version;
   }
 }

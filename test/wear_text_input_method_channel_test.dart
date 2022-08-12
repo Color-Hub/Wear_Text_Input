@@ -4,13 +4,13 @@ import 'package:wear_text_input/wear_text_input_method_channel.dart';
 
 void main() {
   MethodChannelWearTextInput platform = MethodChannelWearTextInput();
-  const MethodChannel channel = MethodChannel('SELECT_INPUT_TYPE');
+  const MethodChannel channel = MethodChannel('wear_text_input');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return 'User text';
+      return '42';
     });
   });
 
@@ -18,7 +18,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getUserInput', () async {
-    expect(await platform.getUserInput(), 'User text');
+  test('getPlatformVersion', () async {
+    expect(await platform.getPlatformVersion(), '42');
   });
 }

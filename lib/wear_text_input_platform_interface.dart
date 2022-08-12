@@ -23,7 +23,7 @@ abstract class WearTextInputPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getUserInput() {
+  Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }
